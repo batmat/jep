@@ -134,7 +134,7 @@ As said above, this will likely be improved as we go.
 !war
 ----
 
-===== Segregate of job configuration and build data
+===== Segregate job configuration and build data
 
 ////
 https://issues.jenkins-ci.org/browse/JENKINS-50164 though
@@ -175,6 +175,20 @@ and quickly rollback to some previous state if need be.
 
 Git is also a very common tool nowadays for developers,
 hence it will help making Essentials more accessible to contributors.
+
+== Why not use compatibleSinceVersion metadata
+
+TIP: A given plugin can indicate what is "the oldest version [...] configuration-compatible with.".
+In other words, if I am changing the configuration format of a plugin in non backwards compatible manner, I am _expected_ to express it as such using link:https://jenkinsci.github.io/maven-hpi-plugin/hpi-mojo.html#compatibleSinceVersion[`compatibleSinceVersion`].
+
+So, this means we could use this field to _optimize_ the way we roll back: once a configuration file has been upgraded by a plugin update, we can exclude it from rollback if the `compatibleSinceVersion` field was not changed.
+
+We decided to not do, for now at least, for two reasons:
+
+* this looks like an _optimization_. $
+Hence as such, this is probably premature to try and be very smart with the way the downgrade will work ;
+* there is no guarantee that all plugin developers currently know and think about updating this metadata when needed.
+This is likely something that will be improveable when we work on link:https://issues.jenkins-ci.org/browse/JENKINS-49806[JENKINS-49806] and write the associated Jenkins Enhancement Proposal.
 
 == Backwards Compatibility
 
