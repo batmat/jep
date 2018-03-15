@@ -100,17 +100,19 @@ To do so, we will generally create an actual new commit using `revert` (i.e. avo
 [[snapshot]]
 ==== Take a snapshot
 
-We use `git` for this purpose, so in this context:
+We use `git` for this purpose.
+The intent is to have everything not ignored in the index.
+In other words, `git status` just after a SNAPSHOT should be in the `nothing to commit, working tree clean` state.
+
 
 ////
 I think .gitignore content must be designed to be able to evolve over time.
 To allow more flexibility, I think the content should be associated between an essentials release/bom to a given .gitignore content.
 ////
 
-* Update `.gitignore` content with current Essentials release.
-* `git add .`
-* `git add -u`
-* `git commit`
+. Update `.gitignore` content with current Essentials release.
+. `git add --all`
+. `git commit -m 'To Be Defined'`
 +
 [NOTE]
 ====
