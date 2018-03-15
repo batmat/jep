@@ -129,8 +129,7 @@ We need to finish up the work on the BOM to be more precise here.
 In other words, what is going to contain `.gitignore`.
 As said above, this will likely be improved as we go.
 
-.\.gitignore
-[source,gitignore,ffd]
+[source,gitignore,title=.gitignore]
 ----
 plugins
 war
