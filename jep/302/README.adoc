@@ -192,7 +192,7 @@ We decided to not do, for now at least, for two reasons:
 * this looks like an _optimization_.
 Hence as such, this is probably premature to try and be very smart with the way the downgrade will work ;
 * there is no guarantee that all plugin developers currently know and think about updating this metadata when needed.
-This is likely something that will be improveable when we work on link:https://issues.jenkins-ci.org/browse/JENKINS-49806[JENKINS-49806] and write the associated Jenkins Enhancement Proposal.
+This is likely something that will be improvable when we work on link:https://issues.jenkins-ci.org/browse/JENKINS-49806[JENKINS-49806] and write the associated Jenkins Enhancement Proposal.
 
 == Backwards Compatibility
 
