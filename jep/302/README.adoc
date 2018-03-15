@@ -168,7 +168,7 @@ In the context of _Essentials_, we cannot rely on external backups to revert to 
 === Why Git
 
 Using filesystem-level tools offering a snapshotting feature, like LVM, ZFS or btrfs to give a few examples, was considered.
-But this was evacuated because _Essentials_ vision is about providing an link:https://github.com/jenkinsci/jep/tree/71d9391744c8cc7d6595805f7fdd327eedf6811a/jep/300#automatically-updated-distribution["_easier to use_ and _easier to manage_ Jenkins environment"].
+But this was discounted because _Essentials_ vision is about providing an link:https://github.com/jenkinsci/jep/tree/71d9391744c8cc7d6595805f7fdd327eedf6811a/jep/300#automatically-updated-distribution["_easier to use_ and _easier to manage_ Jenkins environment"].
 As per the link:https://github.com/jenkinsci/jep/tree/71d9391744c8cc7d6595805f7fdd327eedf6811a/jep/300#target-audience[targeted audience], we obviously do not want to expect _Essentials_ users to be system experts able to set up a dedicated filesystem to operate Jenkins.
 And even with system expert, doing so would not make Essentials a very easy and quick to use distribution of Jenkins.
 
