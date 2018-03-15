@@ -109,8 +109,8 @@ To allow more flexibility, I think the content should be associated between an e
 
 * Update `.gitignore` content with current Essentials release.
 * `git add .`
-* `git add -u `
-* git commit
+* `git add -u`
+* `git commit`
 +
 [NOTE]
 ====
