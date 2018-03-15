@@ -124,7 +124,7 @@ We need to finish up the work on the BOM to be more precise here.
 ////
 ====
 
-===== What to backup
+===== What to back up
 
 In other words, what is going to contain `.gitignore`.
 As said above, this will likely be improved as we go.
@@ -153,7 +153,7 @@ _Workspace Root Directory_:: `${JENKINS_HOME}/workspace/${ITEM_FULLNAME}`
 _Build Record Root Directory_::
 `${JENKINS_HOME}/var/${ITEM_FULL_NAME}/builds`
 
-Though we will for now backup these directories too, having this distinction baked in from the ground up could prove useful in the future if we need to make the snapshotting and rollback processes smarter and more robust.
+Though we will for now back up these directories too, having this distinction baked in from the ground up could prove useful in the future if we need to make the snapshotting and rollback processes smarter and more robust.
 
 For instance, in a case where Jenkins would not come back online after an automated rollback, we would be able to leverage this data separation to try a degraded rollback strategy where we would handle that `$JENKINS_HOME/var` directory in a different way than `JENKINS_HOME/jobs` or other ones.
 
