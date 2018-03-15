@@ -130,8 +130,8 @@ As said above, this will likely be improved as we go.
 .\.gitignore
 [source,gitignore,ffd]
 ----
-!plugins
-!war
+plugins
+war
 secrets/master.key
 ----
 
