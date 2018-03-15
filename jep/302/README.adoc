@@ -148,7 +148,7 @@ THIS IS A VERY VERY BAD IDEA BECAUSE [...] I'm very interested in :-).
 
 We plan to configure Jenkins to use non default values to put the workspace and builds not under the same location as job configuration itself.
 
-_Workspace Root Directory_:: `${JENKINS_HOME}/workspace/${ITEM_FULLNAME}`
+_Workspace Root Directory_:: `${JENKINS_HOME}/var/${ITEM_FULL_NAME}/workspace`
 _Build Record Root Directory_::
 `${JENKINS_HOME}/var/${ITEM_FULL_NAME}/builds`
 
