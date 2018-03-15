@@ -240,7 +240,7 @@ Automatically giving some kind of health grade to a running instance is definite
 Detailing this here is out of scope for this proposal.
 It is however highly desirable that we centralize this logic and use it both during automated tests, and in production for the evergreen-client to automatically analyze if a product instance is healthy or is not (and decide to roll back or not, for the current matter here).
 
-We will leverage the link:https://github.com/cloudbees/operations-center-acceptance-test/[Jenkins Acceptance Test Harness project] for this purpose.
+We will leverage the link:https://github.com/jenkinsci/acceptance-test-harness[Jenkins Acceptance Test Harness project] for this purpose.
 
 === Leveraging Telemetry and live instances data
 
