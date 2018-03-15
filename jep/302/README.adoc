@@ -1,4 +1,4 @@
-= JEP-302: Evergreen snapshotting data safety system
+= JEP-0000: Evergreen snapshotting data safety system
 :toc: preamble
 :toclevels: 3
 ifdef::env-github[]
@@ -13,7 +13,7 @@ endif::[]
 [cols="2"]
 |===
 | JEP
-| 302
+| 0000
 
 | Title
 | Evergreen snapshotting data safety system
