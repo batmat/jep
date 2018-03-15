@@ -234,7 +234,7 @@ Before delivering updates on real connected instances, we must test at least the
 ** No administrative monitor triggered
 ** No new ERROR logs showing up
 
-We will need to develop adhoc testing tools to be able to automatically assess the health of a Jenkins Essentials instance after an upgrade or a downgrade.
+We will need to develop ad-hoc testing tools to be able to automatically assess the health of a Jenkins Essentials instance after an upgrade or a downgrade.
 
 Automatically giving some kind of health grade to a running instance is definitely a critical part of Jenkins Essentials.
 Detailing this here is out of scope for this proposal.
