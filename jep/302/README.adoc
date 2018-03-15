@@ -152,6 +152,8 @@ _Workspace Root Directory_:: `${JENKINS_HOME}/var/${ITEM_FULL_NAME}/workspace`
 _Build Record Root Directory_::
 `${JENKINS_HOME}/var/${ITEM_FULL_NAME}/builds`
 
+This way, everything related to jobs, but is less important than its configuration itself is separated under a different `${JENKINS_HOME}/var/` root.
+
 Though we will for now back up these directories too, having this distinction baked in from the ground up could prove useful in the future if we need to make the snapshotting and rollback processes smarter and more robust.
 
 For instance, in a case where Jenkins would not come back online after an automated rollback, we would be able to leverage this data separation to try a degraded rollback strategy where we would handle that `$JENKINS_HOME/var` directory in a different way than `JENKINS_HOME/jobs` or other ones.
