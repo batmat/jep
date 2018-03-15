@@ -132,6 +132,7 @@ As said above, this will likely be improved as we go.
 ----
 !plugins
 !war
+secrets/master.key
 ----
 
 ===== Segregate job configuration and build data
@@ -198,8 +199,10 @@ There are no backwards compatibility concerns related to this proposal.
 
 === Secrets
 
-Versioning secrets is not an issue, as the snapshotting system is going to be local to the running instance.
-As the Git repository data will never be pushed _outside_, no data leak is expected from this side.
+Versioning secrets should not be an issue per se, as the data snapshotting system is designed to be local to the running instance.
+In other words, the Git repository data will never be pushed _outside_ by the _Essentials_ code, so no data leak is normally expected from this side.
+
+But as users may have the unfortunate idea to push that repository elsewhere, not being aware they are leaking all secrets, we will conservatively add `secrets/master.key` to the `.gitignore` file.
 
 === Man In The Middle
 
