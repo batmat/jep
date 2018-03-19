@@ -192,7 +192,7 @@ and quickly roll back to some previous state if need be.
 Git is also a very common tool nowadays for developers,
 hence it will help making Essentials more accessible to contributors.
 
-== Why not use compatibleSinceVersion metadata
+=== Why not use compatibleSinceVersion metadata
 
 TIP: A given plugin can indicate what is "the oldest version [...] configuration-compatible with.".
 In other words, if I am changing the configuration format of a plugin in non backwards compatible manner, I am _expected_ to express it as such using link:https://jenkinsci.github.io/maven-hpi-plugin/hpi-mojo.html#compatibleSinceVersion[`compatibleSinceVersion`].
