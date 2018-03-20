@@ -277,9 +277,8 @@ Creating/defining this data clearly requires human work, but the following check
 
 Before delivering updates on real connected instances, we must test at least the following scenarios.
 
-* Apply the upgrade or downgrade, then check the instance is _running fine_:
-** No administrative monitor triggered
-** No new ERROR logs showing up
+* Apply the upgrade or downgrade, then check the instance is _running fine_
+footnote:[determining the _health level_ is going to be a dedicated _Jenkins Enhancement Proposal_ as this is also a very critical part of _Essentials_. Cf. link:https://issues.jenkins-ci.org/browse/JENKINS-50294[JENKINS-50294]]
 
 We will need to develop ad-hoc testing tools to be able to automatically assess the health of a Jenkins Essentials instance after an upgrade or a downgrade.
 
