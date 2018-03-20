@@ -85,8 +85,8 @@ Once an evergreen client has been instructed to perform an upgrade, it is respon
 3. Take a snapshot (see <<snapshot>> below)
 5. Perform the instructed upgrade to the given Essentials BOM
 footnote:[Bill Of Materials: this format is currently being designed, but will list everything constituting a version of Essentials: WAR and exact versions of all plugins]
-6. Start new Jenkins version
-7. [[healthcheck]] Check it is responding in a healthy manner.
+6. Start new Jenkins version,
+7. Check it is responding in a healthy manner. (See below details at <<starting>>).
 8. If not:
 .. Take a snapshot footnote:[this way, if new files were created, we don't just delete them in an unrecoverable way when going back to the previous snapshot].
 .. Roll back to the previous data snapshot and Essentials BOM version.
@@ -192,6 +192,35 @@ This way, everything related to jobs, but is less important than its configurati
 Though we will for now back up these directories too, having this distinction baked in from the ground up could prove useful in the future if we need to make the snapshotting and rollback processes smarter and more robust.
 
 For instance, in a case where Jenkins would not come back online after an automated rollback, we would be able to leverage this data separation to try a degraded rollback strategy where we would handle that `$JENKINS_HOME/var` directory in a different way than `JENKINS_HOME/jobs` or other ones.
+
+[[starting]]
+=== Starting Jenkins _progressively_ and checking its health
+
+When starting up, a lot of things can go wrong.
+Plugins will be loaded, and start modifying or updating data models.
+Jobs can start, and fail or not...
+
+All those different things can and will be serialized as much as possible to limit the risk of failing too badly.
+
+TIP: To explain what we mean by _progressive_ startup, we can use a sailing analogy: when testing a new boat, one would not do it right way under big winds, all sails out.
+One would test it with only a small part of the sail out, to see how the boat behaves, and stay in the harbor.
+Then, progressively go further, and under more windy and hard conditions.
+
+Now back to our less poetic context, here is what we will do. (Between each steps, we will check the health of Jenkins):
+
+////
+What follows has not been prototyped entirely, but either reusing an existing plugin, or writing an essentials-plugin using a `QueueTaskDispatcher` should help achieve the "selective queue blocker feature".
+////
+
+. Start Jenkins in quiet mode;
+. (If possible), lock the user interface to avoid users triggering data modification
+. While still monopolizing the queue, trigger a smoke test Pipeline (Using `QueueTaskDispatcher` if no existing plugin can do that).
+footnote:[The goal here is to avoid having a seemingly working instance, but that would bomb out immediately at the first build after upgrade.]
+. Unlock the Queue
+. Unlock User Interface
+
+If the health is good after all those steps, then no revert is expected to take place.
+
 
 == Motivation
 
