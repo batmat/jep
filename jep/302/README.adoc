@@ -192,7 +192,7 @@ Ideally, we should be moving this elsewhere under `/var/jenkins/var/plugins`, bu
 === Checking Jenkins health
 
 From the perspective of this proposal, this is out of scope.
-But the outter _controller_ of the upgrade, the evergreen client, will need a way to decide if a rollback must be triggered or not.
+But the outer _controller_ of the upgrade, the evergreen client, will need a way to decide if a rollback must be triggered or not.
 
 For reference, the dedicated JIRA issue for this is link:https://issues.jenkins-ci.org/browse/JENKINS-50294[JENKINS-50294].
 
