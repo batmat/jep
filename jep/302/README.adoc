@@ -258,17 +258,31 @@ hence it will help making Essentials more accessible to contributors.
 
 === Why not use compatibleSinceVersion metadata
 
-TIP: A given plugin can indicate what is "the oldest version [...] configuration-compatible with.".
-In other words, if I am changing the configuration format of a plugin in non backwards compatible manner, I am _expected_ to express it as such using link:https://jenkinsci.github.io/maven-hpi-plugin/hpi-mojo.html#compatibleSinceVersion[`compatibleSinceVersion`].
+[TIP]
+====
+A given plugin can indicate a link:https://jenkinsci.github.io/maven-hpi-plugin/hpi-mojo.html#compatibleSinceVersion[`compatibleSinceVersion`] information, i.e. what is "the oldest version [...] configuration-compatible with.". For example:
 
-So, this means we could use this field to _optimize_ the way we roll back: once a configuration file has been upgraded by a plugin update, we can exclude it from rollback if the `compatibleSinceVersion` field was not changed.
+* a plugin is being upgraded from version `1.4` to `1.5`
+* it specifies `compatibleSinceVersion`=`1.5`
 
-We decided to not do, for now at least, for two reasons:
+In such case, *if* this plugin wrote configuration files, this means you cannot safely roll back to the `1.4` version of the plugin.
+====
+
+Conversely, with the following situation:
+
+* a plugin is being upgraded from version `1.4` to `1.5`
+* `compatibleSinceVersion` is `1.4` or less, or absent.
+
+In such case, _even_ if the plugin did write its updated configuration files on the disk, we can expect being able to safely rollback the plugin to the previous `1.4` version, _while leaving_ the configuration file content that was just updated for `1.5` version.
+
+We decided to not specificly handle this situation for now.
+In other words, we *will* also roll back those files.
+
+For two reasons:
 
 * this looks like an _optimization_.
 Hence as such, this is probably premature to try and be very smart with the way the downgrade will work ;
-* there is no guarantee that all plugin developers currently know and think about updating this metadata when needed.
-This is likely something that will be improvable when we work on link:https://issues.jenkins-ci.org/browse/JENKINS-49806[JENKINS-49806] and write the associated Jenkins Enhancement Proposal.
+* we need to first work on the link:https://issues.jenkins-ci.org/browse/JENKINS-49806[JEP to define criteria for selecting plugins to include in Jenkins Essentials], so that we have clear process and automated tests in place to check for correct `compatibleSinceVersion` usage.
 
 == Backwards Compatibility
 
