@@ -213,7 +213,7 @@ If Jenkins, after it has been restarted, is deemed unhealthy, then an auto-rollb
 If a version is proved to be problematic after a few days, the data snapshotting system will **not** be used.
 
 This would be quite impractical because the instance probably generated actual work items during this timeframe.
-So rolling back that much later would be subject to losing data.
+So rolling back that much later would risk data loss.
 
 The way we will correct things discovered later will instead be by delivering a new version of Jenkins core or the problematic plugin to fix the issue, thereby leveraging the main goal of _Jenkins Essentials_ to make upgrades seamless.
 
