@@ -103,8 +103,8 @@ We use `git` for this purpose.
 The intent is to have everything not ignored in the index.
 In other words, `git status` just after a SNAPSHOT should be in the `nothing to commit, working tree clean` state.
 
-We will *not* snapshot data that is too big or does not make sense to store:.
-We will configure Jenkins in a way that physically separate as much as possible the things that must be snapshotted, and things that will not (see <<data_segregation>> for details).
+We will *not* snapshot data that is too big or does not make sense to store.
+We will configure Jenkins in a way that physically separates as much as possible the things that must be snapshotted, and things that will not (see <<data_segregation>> for details).
 
 ////
 I think .gitignore content must be designed to be able to evolve over time.
@@ -133,7 +133,7 @@ We will configure Jenkins to use non default values to better separate the more 
 To keep things simple, we will keep having a single Docker volume, but introduce an additional level to separate things that must be snapshotted, and things that do not need to.
 Incidentally, this will help keep `.gitignore` short.
 
-Basically, instead of the now usual `/var/jenkins_home`, we will introduce two subdirectories:
+Basically, instead of the now usual `/var/jenkins_home`, we will introduce two subdirectories under `/var/jenkins` (which we will refer to as `$JENKINS_DIR`):
 
 * `/var/jenkins/home` (=`$JENKINS_HOME`) for to-be-snapshotted part,
 * and `/var/jenkins/var` for the rest.
@@ -169,12 +169,6 @@ Here is what it will look like:
         ├── ...
 ```
 
-This way, everything related to jobs, but is less important than its configuration itself is separated under a different `${JENKINS_HOME}/var/` root.
-
-Though we will for now back up these directories too, having this distinction baked in from the ground up could prove useful in the future if we need to make the snapshotting and rollback processes smarter and more robust.
-
-For instance, in a case where Jenkins would not come back online after an automated rollback, we would be able to leverage this data separation to try a degraded rollback strategy where we would handle that `$JENKINS_HOME/var` directory in a different way than `JENKINS_HOME/jobs` or other ones.
-
 ===== What to back up
 
 Thanks to the data segregation explained above, we will be snapshotting (almost) everything under `/var/jenkins/home`.
@@ -185,6 +179,7 @@ As said above, this will likely be improved as we go.
 [source,gitignore,title=.gitignore]
 ----
 plugins/
+updates/
 secrets/master.key
 ----
 
